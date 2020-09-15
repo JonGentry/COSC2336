@@ -9,7 +9,7 @@
   This is a program to test and compute the greatest common divisor while using
   a recursive method.
  */
-package Main.Java.Assignments.Recursion;
+package Main.Java.ClassWork.Recursion.Assignment;
 
 import java.util.Scanner;
 

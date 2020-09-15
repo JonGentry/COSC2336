@@ -10,7 +10,7 @@
   return the largest element.
  */
 
-package Main.Java.Assignments.Generics;
+package Main.Java.ClassWork.Generics.Assignment;
 
 import java.util.ArrayList;
 import java.util.Scanner;
