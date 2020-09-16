@@ -3,10 +3,10 @@
   COSC 2336-48F
   Instructor: Dr. Doerschuk
   Programming Assignment 3
-  Due: 9/15/2020
-  Submitted: 9/15/2020
+  Due: 9/16/2020
+  Submitted: 9/16/2020
   Programming language: Java JDK 14
-  This is a program prompt the user to enter an expression and then to evaluate and return the results.
+  This is a program prompt the user to enter an expression and then to evaluate and return the results while using stacks.
  */
 
 package Main.Java.ClassWork.ListsStacksQueuesPriorityQueues.Assignment;
@@ -24,25 +24,31 @@ public class EvaluateExpressionJonathanGentry {
      Main method is used to create a scanner and ask the user for an expression, then to test the evaluateExpression() method.
      */
     public static void main(String[] args) {
-
+        // Create a scanner object to hold console input
         Scanner scan = new Scanner(System.in);
 
+        // Prompt user to input an expression and store it in String variable askExpression
         System.out.println("Enter the expression to be evaluated: ");
-
         String askExpression = scan.nextLine();
 
-        System.out.println(askExpression + " = " + evaluateExpression(askExpression));
+        // Try block to catch if a wrong expression was entered
+        try {
+            // Send to console the user's expression and the evaluated results
+            System.out.println(askExpression + " = " + evaluateExpression(askExpression));
+        } catch (Exception ex) {
+            System.out.println("Wrong expression: " + askExpression);
+        }
     }
 
     /**
-     Method name: gdc
+     Method name: evaluateExpression
      Purpose: Evaluate an expression
-     Pre Conditions: String
-     Post Condition: One int
-     Return condition: The processed operands and operators
-     Parameters: expression
+     Pre Conditions: Expression
+     Post Condition: Computed Expression
+     Return condition: The last Integer in operandStack after evaluation.
+     Parameters: String
      The method takes a string and breaks it down to check for operands and operators to add to their respective stacks,
-     then it will evaluate the expression.
+     then it will evaluate the expression and return the value.
      */
     public static int evaluateExpression(String expression) {
         // Create operandStack to store operands
@@ -124,8 +130,16 @@ public class EvaluateExpressionJonathanGentry {
         return operandStack.pop();
     }
 
-    /** Process one operator: Take an operator from operatorStack and
-     *  apply it on the operands in the operandStack */
+    /**
+     Method name: processAnOperator
+     Purpose: To process one operator
+     Pre Conditions: operandStack and operatorStack
+     Post Condition: Push evaluated Integer to operandStack
+     Return condition: void
+     Parameters: Stack<Integer> and Stack<Character>
+     The method takes an operator from operatorStack and applies it on the operands in the operandStack, then return
+     results to the operandStack.
+     */
     public static void processAnOperator(Stack<Integer> operandStack, Stack<Character> operatorStack) {
         char op = operatorStack.pop();
         int op1 = operandStack.pop();
@@ -145,6 +159,15 @@ public class EvaluateExpressionJonathanGentry {
             operandStack.push((int)Math.pow(op2, op1));
     }
 
+    /**
+     Method name: insertBlanks
+     Purpose: Insert blank character around the expression operators
+     Pre Conditions: String s
+     Post Condition: String result
+     Return condition: result
+     Parameters: Stack<Integer> and Stack<Character>
+     The method takes a string and inserts " " around operators.
+     */
     public static String insertBlanks(String s) {
         String result = "";
 
